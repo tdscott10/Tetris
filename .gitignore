@@ -1,0 +1,12 @@
+/*
+!/src
+!build.xml
+!/lib
+.DS_Store
+*/.DS_Store
+.metadata
+.project
+.settings
+.classpath
+/bin
+lib/jacoco.exec
