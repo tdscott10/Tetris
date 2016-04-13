@@ -2,6 +2,8 @@ package org.psnbtech.tests;
 
 import java.awt.Color;
 import org.junit.*;
+import org.psnbtech.TileType;
+
 import static org.junit.Assert.*;
 
 /**

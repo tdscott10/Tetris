@@ -1,6 +1,8 @@
 package org.psnbtech.tests;
 
 import org.junit.*;
+import org.psnbtech.Clock;
+
 import static org.junit.Assert.*;
 
 /**
