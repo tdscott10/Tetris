@@ -98,7 +98,8 @@ public class Clock {
 	 * Checks to see if the clock is currently paused.
 	 * @return Whether or not this clock is paused.
 	 */
-	public boolean isPaused() {
+	public boolean isPaused()
+	{
 		return isPaused;
 	}
 	
@@ -108,12 +109,19 @@ public class Clock {
 	 * @return Whether or not a cycle has elapsed.
 	 * @see peekElapsedCycle
 	 */
-	public boolean hasElapsedCycle() {
-		if(elapsedCycles > 0) {
+	public boolean hasElapsedCycle() 
+	{
+		boolean checkCycles;
+		if(elapsedCycles > 0) 
+		{
 			this.elapsedCycles--;
-			return true;
+			checkCycles =  true;
+		} 
+		else 
+		{
+			checkCycles = false;
 		}
-		return false;
+		return checkCycles;
 	}
 	
 	/**
@@ -123,8 +131,9 @@ public class Clock {
 	 * @return Whether or not a cycle has elapsed.
 	 * @see hasElapsedCycle
 	 */
-	public boolean peekElapsedCycle() {
-		return (elapsedCycles > 0);
+	public boolean peekElapsedCycle() 
+	{
+		return elapsedCycles > 0;
 	}
 	
 	/**
@@ -134,8 +143,9 @@ public class Clock {
 	 * {@code System.nanoTime()}.
 	 * @return The current time in milliseconds.
 	 */
-	private static final long getCurrentTime() {
-		return (System.nanoTime() / 1000000L);
+	private static final long getCurrentTime() 
+	{
+		return System.nanoTime() / 1000000L;
 	}
 
 }

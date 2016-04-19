@@ -229,6 +229,8 @@ public class Tetris extends JFrame {
 					}
 					break;
 				
+				default: //other than cases listed, other keystrokes do not matter 	
+				
 				}
 			}
 			
@@ -246,6 +248,8 @@ public class Tetris extends JFrame {
 					logicTimer.setCyclesPerSecond(gameSpeed);
 					logicTimer.reset();
 					break;
+					
+				default: //only 'S' matters, other keystrokes do nothing for this particular method	
 				}
 				
 			}
