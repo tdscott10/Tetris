@@ -72,7 +72,7 @@ public class Clock {
 	public void update() {
 		//Get the current time and calculate the delta time.
 		final long currUpdate = getCurrentTime();
-		float delta = (float)(currUpdate - lastUpdate) + excessCycles;
+		final float delta = (float)(currUpdate - lastUpdate) + excessCycles;
 		
 		//Update the number of elapsed and excess ticks if we're not paused.
 		if(!isPaused) {
