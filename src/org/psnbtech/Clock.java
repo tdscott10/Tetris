@@ -11,28 +11,28 @@ public class Clock {
 	/**
 	 * The number of milliseconds that make up one cycle.
 	 */
-	private float millisPerCycle;
+	private static float millisPerCycle;
 	
 	/**
 	 * The last time that the clock was updated (used for calculating the
 	 * delta time).
 	 */
-	private long lastUpdate;
+	private static long lastUpdate;
 	
 	/**
 	 * The number of cycles that have elapsed and have not yet been polled.
 	 */
-	private int elapsedCycles;
+	private static int elapsedCycles;
 	
 	/**
 	 * The amount of excess time towards the next elapsed cycle.
 	 */
-	private float excessCycles;
+	private static float excessCycles;
 	
 	/**
 	 * Whether or not the clock is paused.
 	 */
-	private boolean isPaused;
+	private static boolean isPaused;
 	
 	/**
 	 * Creates a new clock and sets it's cycles-per-second.
