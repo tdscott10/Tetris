@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
-
 import javax.swing.JFrame;
 
 /**
@@ -14,7 +13,6 @@ import javax.swing.JFrame;
  *
  */
 public class Tetris extends JFrame {
-	
 	/**
 	 * The Serial Version UID.
 	 */
@@ -117,6 +115,7 @@ public class Tetris extends JFrame {
 	 * Creates a new Tetris instance. Sets up the window's properties,
 	 * and adds a controller listener.
 	 */
+	
 	private Tetris() {
 		/*
 		 * Set the basic properties of the window.
@@ -263,12 +262,11 @@ public class Tetris extends JFrame {
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
-	}
-	
+	}	
 	/**
 	 * Starts the game running. Initializes everything and enters the game loop.
 	 */
-	private void startGame() {
+	private void startGame() {		
 		/*
 		 * Initialize our random number generator, logic timer, and new game variables.
 		 */
@@ -281,11 +279,12 @@ public class Tetris extends JFrame {
 		 * to start it.
 		 */
 		this.logicTimer = new Clock(gameSpeed);
-		logicTimer.setPaused(true);
+		logicTimer.setPaused(true);		
 		
 		while(true) {
 			//Get the time that the frame started.
 			long start = System.nanoTime();
+			
 			
 			//Update the logic timer.
 			logicTimer.update();
@@ -314,11 +313,15 @@ public class Tetris extends JFrame {
 				try {
 					Thread.sleep(FRAME_TIME - delta);
 				} catch(Exception e) {
-					e.printStackTrace();
+					//e.printStackTrace();
+					LOGGER.log("context", e); //change printStackTrace to Logger call 
+					
 				}
 			}
 		}
 	}
+
+
 	
 	/**
 	 * Updates the game and handles the bulk of it's logic.
@@ -360,27 +363,29 @@ public class Tetris extends JFrame {
 			 * in from the heavens immediately after this piece hits if we've not reacted
 			 * yet. (~0.5 second buffer).
 			 */
-			dropCooldown = 25;
+			dropCooldown = 0;
 			
 			/*
 			 * Update the difficulty level. This has no effect on the game, and is only
 			 * used in the "Level" string in the SidePanel.
 			 */
 			level = (int)(gameSpeed * 1.70f);
-			
+
+				
 			/*
 			 * Spawn a new piece to control.
 			 */
 			spawnPiece();
-		}		
+			
+		}	
+		
 	}
-	
 	/**
 	 * Forces the BoardPanel and SidePanel to repaint.
 	 */
 	private void renderGame() {
 		board.repaint();
-		side.repaint();
+		side.repaint();  	
 	}
 	
 	/**
@@ -399,6 +404,7 @@ public class Tetris extends JFrame {
 		logicTimer.setCyclesPerSecond(gameSpeed);
 		spawnPiece();
 	}
+
 		
 	/**
 	 * Spawns a new piece and resets our piece's variables to their default
@@ -567,5 +573,4 @@ public class Tetris extends JFrame {
 		Tetris tetris = new Tetris();
 		tetris.startGame();
 	}
-
 }
