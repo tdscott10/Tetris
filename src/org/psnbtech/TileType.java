@@ -404,7 +404,7 @@ public enum TileType {
 	}
 	
 	/**
-	 * The botom inset is represented by the number of empty rows on the bottom
+	 * The bottom inset is represented by the number of empty rows on the bottom
 	 * side of the array for the given rotation.
 	 * @param rotation The rotation.
 	 * @return The bottom inset.

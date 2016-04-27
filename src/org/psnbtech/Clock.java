@@ -41,6 +41,7 @@ public class Clock {
 	public Clock(float cyclesPerSecond) {
 		setCyclesPerSecond(cyclesPerSecond);
 		reset();
+		
 	}
 	
 	/**
@@ -49,6 +50,7 @@ public class Clock {
 	 */
 	public void setCyclesPerSecond(float cyclesPerSecond) {
 		this.millisPerCycle = (1.0f / cyclesPerSecond) * 1000;
+		
 	}
 	
 	/**
@@ -61,6 +63,7 @@ public class Clock {
 		this.excessCycles = 0.0f;
 		this.lastUpdate = getCurrentTime();
 		this.isPaused = false;
+		
 	}
 	
 	/**
@@ -78,6 +81,7 @@ public class Clock {
 		if(!isPaused) {
 			this.elapsedCycles += (int)Math.floor(delta / millisPerCycle);
 			this.excessCycles = delta % millisPerCycle;
+			
 		}
 		
 		//Set the last update time for the next update cycle.
@@ -134,6 +138,7 @@ public class Clock {
 	public boolean peekElapsedCycle() 
 	{
 		return elapsedCycles > 0;
+		
 	}
 	
 	/**

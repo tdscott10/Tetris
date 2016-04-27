@@ -3,8 +3,14 @@ package org.psnbtech;
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.Random;
 import javax.swing.JFrame;
+
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 /**
  * The {@code Tetris} class is responsible for handling much of the game logic and
@@ -263,6 +269,7 @@ public class Tetris extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}	
+	
 	/**
 	 * Starts the game running. Initializes everything and enters the game loop.
 	 */
@@ -274,6 +281,20 @@ public class Tetris extends JFrame {
 		this.isNewGame = true;
 		this.gameSpeed = 1.0f;
 		
+		new JFXPanel(); // this will prepare JavaFX toolkit and environment
+		
+		String Tetrisbkg = "C:/Users/Nicho/Documents/Tetris/SoundFX/Tetris.mp3";
+		Media hit = new Media(new File(Tetrisbkg).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(hit);
+		mediaPlayer.play();
+    	mediaPlayer.setOnEndOfMedia(new Runnable() 
+	    {
+		    public void run()
+		    {
+		    	mediaPlayer.seek(Duration.ZERO);
+		    }  
+		  } );
+		 
 		/*
 		 * Setup the timer to keep the game from running before the user presses enter
 		 * to start it.
@@ -283,11 +304,11 @@ public class Tetris extends JFrame {
 		
 		while(true) {
 			//Get the time that the frame started.
-			long start = System.nanoTime();
-			
+			long start = System.nanoTime();			
 			
 			//Update the logic timer.
 			logicTimer.update();
+		
 			
 			/*
 			 * If a cycle has elapsed on the timer, we can update the game and
@@ -295,6 +316,8 @@ public class Tetris extends JFrame {
 			 */
 			if(logicTimer.hasElapsedCycle()) {
 				updateGame();
+					
+				
 			}
 		
 			//Decrement the drop cool down if necessary.
@@ -312,6 +335,7 @@ public class Tetris extends JFrame {
 			if(delta < FRAME_TIME) {
 				try {
 					Thread.sleep(FRAME_TIME - delta);
+					
 				} catch(Exception e) {
 					//e.printStackTrace();
 					LOGGER.log("context", e); //change printStackTrace to Logger call 
@@ -369,23 +393,36 @@ public class Tetris extends JFrame {
 			 * Update the difficulty level. This has no effect on the game, and is only
 			 * used in the "Level" string in the SidePanel.
 			 */
+		
 			level = (int)(gameSpeed * 1.70f);
-
-				
+			/*
+			 * The following music code should somehow be able to track when level changes and then play the sound.
+			 * Possible some time of change listener, but I am not sure how to implement...NE
+			 * 
+			 * 
+				String LevelUp = "C:/Users/Nicho/Documents/Tetris/SoundFX/sFXSwell.wav";
+				Media sound = new Media(new File(LevelUp).toURI().toString());
+				MediaPlayer mediaPlayer = new MediaPlayer(sound);
+				mediaPlayer.play();	
+			
+			*/	
+			
+			
+		
 			/*
 			 * Spawn a new piece to control.
 			 */
 			spawnPiece();
-			
+		}
 		}	
 		
-	}
 	/**
 	 * Forces the BoardPanel and SidePanel to repaint.
 	 */
 	private void renderGame() {
 		board.repaint();
-		side.repaint();  	
+		side.repaint(); 
+		
 	}
 	
 	/**
@@ -403,6 +440,7 @@ public class Tetris extends JFrame {
 		logicTimer.reset();
 		logicTimer.setCyclesPerSecond(gameSpeed);
 		spawnPiece();
+		
 	}
 
 		
@@ -428,12 +466,18 @@ public class Tetris extends JFrame {
 		if(!board.isValidAndEmpty(currentType, currentCol, currentRow, currentRotation)) {
 			this.isGameOver = true;
 			logicTimer.setPaused(true);
+			
+			String gameoverSound = "/Users/Nicho/Documents/Tetris/SoundFX/schoolbellringing.wav";
+			Media sound2 = new Media(new File(gameoverSound).toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound2);
+			mediaPlayer.setVolume(0.8);
+			mediaPlayer.play();
 		}		
 	}
 
 	/**
 	 * Attempts to set the rotation of the current piece to newRotation.
-	 * @param newRotation The rotation of the new peice.
+	 * @param newRotation The rotation of the new piece.
 	 */
 	private void rotatePiece(int newRotation) {
 		/*
@@ -506,6 +550,7 @@ public class Tetris extends JFrame {
 	 */
 	public boolean isNewGame() {
 		return isNewGame;
+		
 	}
 	
 	/**
@@ -522,6 +567,7 @@ public class Tetris extends JFrame {
 	 */
 	public int getLevel() {
 		return level;
+		
 	}
 	
 	/**
@@ -572,5 +618,7 @@ public class Tetris extends JFrame {
 	public static void main(String[] args) {
 		Tetris tetris = new Tetris();
 		tetris.startGame();
+		
+		
 	}
 }
