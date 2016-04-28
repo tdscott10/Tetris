@@ -32,7 +32,7 @@ public class Clock {
 	/**
 	 * Whether or not the clock is paused.
 	 */
-	private static boolean isPaused;
+	private static boolean paused;
 	
 	/**
 	 * Creates a new clock and sets it's cycles-per-second.
@@ -60,7 +60,7 @@ public class Clock {
 		this.elapsedCycles = 0;
 		this.excessCycles = 0.0f;
 		this.lastUpdate = getCurrentTime();
-		this.isPaused = false;
+		this.paused = false;
 	}
 	
 	/**
@@ -75,7 +75,7 @@ public class Clock {
 		final float delta = (float)(currUpdate - lastUpdate) + excessCycles;
 		
 		//Update the number of elapsed and excess ticks if we're not paused.
-		if(!isPaused) {
+		if(!paused) {
 			this.elapsedCycles += (int)Math.floor(delta / millisPerCycle);
 			this.excessCycles = delta % millisPerCycle;
 		}
@@ -91,7 +91,7 @@ public class Clock {
 	 * @param paused Whether or not to pause this clock.
 	 */
 	public void setPaused(boolean paused) {
-		this.isPaused = paused;
+		this.paused = paused;
 	}
 	
 	/**
@@ -99,7 +99,7 @@ public class Clock {
 	 * @return Whether or not this clock is paused.
 	 */
 	public boolean isPaused() {
-		return isPaused;
+		return paused;
 	}
 	
 	/**
