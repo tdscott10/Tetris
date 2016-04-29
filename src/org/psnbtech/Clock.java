@@ -65,7 +65,7 @@ public class Clock {
 		this.elapsedCycles = 0;
 		this.excessCycles = 0.0f;
 		this.lastUpdate = getCurrentTime();
-		this.isPaused = false;
+		this.paused = false;
 		
 	}
 	
@@ -106,7 +106,7 @@ public class Clock {
 	 * @return Whether or not this clock is paused.
 	 */
 	public boolean isPaused() {
-		return isPaused;
+		return paused;
 	}
 	
 	/**

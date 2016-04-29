@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.net.URL;
 import java.util.Random;
 import javax.swing.JFrame;
 
@@ -251,9 +252,9 @@ public class Tetris extends JFrame {
 					 */
 					logicTimer.setCyclesPerSecond(gameSpeed);
 					logicTimer.reset();
-					break;
+					//break;
 					
-				default: //only 'S' matters, other keystrokes do nothing for this particular method
+				//default: //only 'S' matters, other keystrokes do nothing for this particular method
 				}
 				
 			}
@@ -282,8 +283,8 @@ public class Tetris extends JFrame {
 		
 		new JFXPanel(); // this will prepare JavaFX toolkit and environment
 		
-		String Tetrisbkg = "C:/Users/Nicho/Documents/Tetris/SoundFX/Tetris.mp3";
-		Media hit = new Media(new File(Tetrisbkg).toURI().toString());
+		String Tetrisbkg = this.getClass().getResource("/Tetris.mp3").toString();
+		Media hit = new Media(Tetrisbkg);
 		MediaPlayer mediaPlayer = new MediaPlayer(hit);
 		mediaPlayer.play();
     	mediaPlayer.setOnEndOfMedia(new Runnable() 
@@ -466,8 +467,8 @@ public class Tetris extends JFrame {
 			this.isGameOver = true;
 			logicTimer.setPaused(true);
 			
-			String gameoverSound = "/Users/Nicho/Documents/Tetris/SoundFX/schoolbellringing.wav";
-			Media sound2 = new Media(new File(gameoverSound).toURI().toString());
+			String gameoverSound = this.getClass().getResource("/Tetris.mp3").toString();
+			Media sound2 = new Media(gameoverSound);
 			MediaPlayer mediaPlayer = new MediaPlayer(sound2);
 			mediaPlayer.setVolume(0.8);
 			mediaPlayer.play();

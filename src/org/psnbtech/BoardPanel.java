@@ -245,8 +245,8 @@ public class BoardPanel extends JPanel {
 				setTile(col, row + 1, getTile(col, row));
 			}
 		
-		String rowclear = "/Users/Nicho/Documents/Tetris/SoundFX/smash.mp3";
-		Media sound = new Media(new File(rowclear).toURI().toString());
+		String rowclear = this.getClass().getResource("smash.mp3").toString();
+		Media sound = new Media(rowclear);
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.setVolume(0.1);
 		mediaPlayer.play();
