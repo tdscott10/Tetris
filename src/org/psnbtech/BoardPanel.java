@@ -4,8 +4,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.io.File;
 
 import javax.swing.JPanel;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 
 /**
  * The {@code BoardPanel} class is responsible for displaying the game grid and
@@ -101,6 +106,7 @@ public class BoardPanel extends JPanel {
 	 */
 	private Tetris tetris;
 	
+	
 	/**
 	 * The tiles that make up the board.
 	 */
@@ -115,9 +121,7 @@ public class BoardPanel extends JPanel {
 		this.tiles = new TileType[ROW_COUNT][COL_COUNT];
 		
 		setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
-		setBackground(Color.BLACK);
-	}
-	
+		setBackground(Color.BLACK); }	
 	/**
 	 * Resets the board and clears away any tiles.
 	 */
@@ -240,6 +244,12 @@ public class BoardPanel extends JPanel {
 			for(int col = 0; col < COL_COUNT; col++) {
 				setTile(col, row + 1, getTile(col, row));
 			}
+		
+		String rowclear = "/Users/Nicho/Documents/Tetris/SoundFX/smash.mp3";
+		Media sound = new Media(new File(rowclear).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.setVolume(0.1);
+		mediaPlayer.play();
 		}
 		return true;
 	}
@@ -344,7 +354,7 @@ public class BoardPanel extends JPanel {
 			 * down until we hit a row that would cause a collision.
 			 */
 			Color base = type.getBaseColor();
-			base = new Color(base.getRed(), base.getGreen(), base.getBlue(), 20);
+			base = new Color(base.getRed(), base.getGreen(), base.getBlue(), 60); //changed value from 20 to 60 to make ghost more visible NE
 			for(int lowest = pieceRow; lowest < ROW_COUNT; lowest++) {
 				//If no collision is detected, try the next row.
 				if(isValidAndEmpty(type, pieceCol, lowest, rotation)) {					
@@ -382,7 +392,7 @@ public class BoardPanel extends JPanel {
 		/*
 		 * Draw the outline.
 		 */
-		g.setColor(Color.WHITE);
+		g.setColor(Color.MAGENTA); //changed from white to magenta for esthetics NE
 		g.drawRect(0, 0, TILE_SIZE * COL_COUNT, TILE_SIZE * VISIBLE_ROW_COUNT);
 	}
 	
