@@ -2,14 +2,14 @@
 ##SER216 Final Project by Nichole Erickson, Taylor Scott and John Olin
 
 ###Available Ant Targets:
-Deploy Executable Jar
-*ant deploy*
+Deploy Executable Jar:
+__*ant deploy*__
 
-Run Game\n
-*ant run-app*
+Run Game:
+__*ant run-app*__
 
-Run Tests\n
-*ant run-tests*
+Run Tests:
+__*ant run-tests*__
 
 ###Travis-CI integration testing site
 https://travis-ci.org/tdscott10/Tetris
