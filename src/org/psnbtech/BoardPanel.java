@@ -244,13 +244,13 @@ public class BoardPanel extends JPanel {
 			for(int col = 0; col < COL_COUNT; col++) {
 				setTile(col, row + 1, getTile(col, row));
 			}
-		
-		String rowclear = this.getClass().getResource("smash.mp3").toString();
-		Media sound = new Media(rowclear);
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.setVolume(0.1);
-		mediaPlayer.play();
+			String rowclear = this.getClass().getResource("/smash.mp3").toString();
+			Media sound = new Media(rowclear);
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.setVolume(0.1);
+			mediaPlayer.play();
 		}
+		
 		return true;
 	}
 	

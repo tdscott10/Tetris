@@ -3,8 +3,6 @@ package org.psnbtech;
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.net.URL;
 import java.util.Random;
 import javax.swing.JFrame;
 
@@ -16,7 +14,6 @@ import javafx.util.Duration;
 /**
  * The {@code Tetris} class is responsible for handling much of the game logic and
  * reading user input.
-
  *
  */
 public class Tetris extends JFrame {
@@ -467,7 +464,7 @@ public class Tetris extends JFrame {
 			this.isGameOver = true;
 			logicTimer.setPaused(true);
 			
-			String gameoverSound = this.getClass().getResource("schoolbellringing.wav").toString();
+			String gameoverSound = this.getClass().getResource("/schoolbellringing.wav").toString();
 			Media sound2 = new Media(gameoverSound);
 			MediaPlayer mediaPlayer = new MediaPlayer(sound2);
 			mediaPlayer.setVolume(0.8);
