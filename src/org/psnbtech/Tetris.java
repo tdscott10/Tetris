@@ -253,7 +253,7 @@ public class Tetris extends JFrame {
 					logicTimer.reset();
 					break;
 					
-				default: //only 'S' matters, other keystrokes do nothing for this particular method	
+				default: //only 'S' matters, other keystrokes do nothing for this particular method
 				}
 				
 			}

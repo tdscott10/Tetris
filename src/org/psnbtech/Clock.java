@@ -65,12 +65,8 @@ public class Clock {
 		this.elapsedCycles = 0;
 		this.excessCycles = 0.0f;
 		this.lastUpdate = getCurrentTime();
-<<<<<<< HEAD
 		this.isPaused = false;
 		
-=======
-		this.paused = false;
->>>>>>> master
 	}
 	
 	/**
@@ -119,8 +115,7 @@ public class Clock {
 	 * @return Whether or not a cycle has elapsed.
 	 * @see peekElapsedCycle
 	 */
-	public boolean hasElapsedCycle() 
-	{
+	public boolean hasElapsedCycle() {
 		boolean checkCycles;
 		if(elapsedCycles > 0) 
 		{
