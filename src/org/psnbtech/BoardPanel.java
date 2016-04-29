@@ -104,7 +104,7 @@ public class BoardPanel extends JPanel {
 	/**
 	 * The Tetris instance.
 	 */
-	private Tetris tetris;
+	private static Tetris tetris;
 	
 	
 	/**
