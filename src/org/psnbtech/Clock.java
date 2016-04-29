@@ -11,28 +11,28 @@ public class Clock {
 	/**
 	 * The number of milliseconds that make up one cycle.
 	 */
-	private float millisPerCycle;
+	private static float millisPerCycle;
 	
 	/**
 	 * The last time that the clock was updated (used for calculating the
 	 * delta time).
 	 */
-	private long lastUpdate;
+	private static long lastUpdate;
 	
 	/**
 	 * The number of cycles that have elapsed and have not yet been polled.
 	 */
-	private int elapsedCycles;
+	private static int elapsedCycles;
 	
 	/**
 	 * The amount of excess time towards the next elapsed cycle.
 	 */
-	private float excessCycles;
+	private static float excessCycles;
 	
 	/**
 	 * Whether or not the clock is paused.
 	 */
-	private boolean isPaused;
+	private static boolean paused;
 	
 	/**
 	 * Creates a new clock and sets it's cycles-per-second.
@@ -48,6 +48,9 @@ public class Clock {
 	 * @param cyclesPerSecond The number of cycles per second.
 	 */
 	public void setCyclesPerSecond(float cyclesPerSecond) {
+		if(cyclesPerSecond < 0)
+	        throw new IllegalArgumentException();
+	
 		this.millisPerCycle = (1.0f / cyclesPerSecond) * 1000;
 	}
 	
@@ -60,7 +63,7 @@ public class Clock {
 		this.elapsedCycles = 0;
 		this.excessCycles = 0.0f;
 		this.lastUpdate = getCurrentTime();
-		this.isPaused = false;
+		this.paused = false;
 	}
 	
 	/**
@@ -71,11 +74,11 @@ public class Clock {
 	 */
 	public void update() {
 		//Get the current time and calculate the delta time.
-		long currUpdate = getCurrentTime();
-		float delta = (float)(currUpdate - lastUpdate) + excessCycles;
+		final long currUpdate = getCurrentTime();
+		final float delta = (float)(currUpdate - lastUpdate) + excessCycles;
 		
 		//Update the number of elapsed and excess ticks if we're not paused.
-		if(!isPaused) {
+		if(!paused) {
 			this.elapsedCycles += (int)Math.floor(delta / millisPerCycle);
 			this.excessCycles = delta % millisPerCycle;
 		}
@@ -91,16 +94,16 @@ public class Clock {
 	 * @param paused Whether or not to pause this clock.
 	 */
 	public void setPaused(boolean paused) {
-		this.isPaused = paused;
+		this.paused = paused;
 	}
 	
 	/**
 	 * Checks to see if the clock is currently paused.
 	 * @return Whether or not this clock is paused.
 	 */
-	public boolean isPaused()
-	{
+	public boolean isPaused() {
 		return isPaused;
+
 	}
 	
 	/**
@@ -109,8 +112,7 @@ public class Clock {
 	 * @return Whether or not a cycle has elapsed.
 	 * @see peekElapsedCycle
 	 */
-	public boolean hasElapsedCycle() 
-	{
+	public boolean hasElapsedCycle() {
 		boolean checkCycles;
 		if(elapsedCycles > 0) 
 		{
