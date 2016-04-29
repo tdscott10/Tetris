@@ -467,7 +467,7 @@ public class Tetris extends JFrame {
 			this.isGameOver = true;
 			logicTimer.setPaused(true);
 			
-			String gameoverSound = this.getClass().getResource("/Tetris.mp3").toString();
+			String gameoverSound = this.getClass().getResource("schoolbellringing.wav").toString();
 			Media sound2 = new Media(gameoverSound);
 			MediaPlayer mediaPlayer = new MediaPlayer(sound2);
 			mediaPlayer.setVolume(0.8);
