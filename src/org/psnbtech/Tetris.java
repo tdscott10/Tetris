@@ -156,7 +156,7 @@ public class Tetris extends JFrame {
 				 * paused and that there is no drop cooldown, then set the
 				 * logic timer to run at a speed of 25 cycles per second.
 				 */
-				case KeyEvent.VK_S:
+				case KeyEvent.VK_DOWN:
 					if(!isPaused && dropCooldown == 0) {
 						logicTimer.setCyclesPerSecond(25.0f);
 					}
@@ -167,7 +167,7 @@ public class Tetris extends JFrame {
 				 * not paused and that the position to the left of the current
 				 * position is valid. If so, we decrement the current column by 1.
 				 */
-				case KeyEvent.VK_A:
+				case KeyEvent.VK_LEFT:
 					if(!isPaused && board.isValidAndEmpty(currentType, currentCol - 1, currentRow, currentRotation)) {
 						currentCol--;
 					}
@@ -178,35 +178,39 @@ public class Tetris extends JFrame {
 				 * not paused and that the position to the right of the current
 				 * position is valid. If so, we increment the current column by 1.
 				 */
-				case KeyEvent.VK_D:
+				case KeyEvent.VK_RIGHT	:
 					if(!isPaused && board.isValidAndEmpty(currentType, currentCol + 1, currentRow, currentRotation)) {
 						currentCol++;
 					}
 					break;
 					
 				/*
+				 * CHANGED CODE FOR ONLY 1 ROTATION KEY NOW ONLY UP ARROW - NE
 				 * Rotate Anticlockwise - When pressed, check to see that the game is not paused
 				 * and then attempt to rotate the piece anticlockwise. Because of the size and
 				 * complexity of the rotation code, as well as it's similarity to clockwise
 				 * rotation, the code for rotating the piece is handled in another method.
 				 */
-				case KeyEvent.VK_Q:
+				case KeyEvent.VK_UP:
 					if(!isPaused) {
 						rotatePiece((currentRotation == 0) ? 3 : currentRotation - 1);
 					}
 					break;
 				
 				/*
+				 * CODE CHANGED FOR ONLY ONE ROTATION KEY< THIS SECTION NO LONGER NEEDED -NE
+				 * 
 			     * Rotate Clockwise - When pressed, check to see that the game is not paused
 				 * and then attempt to rotate the piece clockwise. Because of the size and
 				 * complexity of the rotation code, as well as it's similarity to anticlockwise
 				 * rotation, the code for rotating the piece is handled in another method.
-				 */
+				 *
 				case KeyEvent.VK_E:
 					if(!isPaused) {
 						rotatePiece((currentRotation == 3) ? 0 : currentRotation + 1);
 					}
 					break;
+				*/
 					
 				/*
 				 * Pause Game - When pressed, check to see that we're currently playing a game.
@@ -215,7 +219,7 @@ public class Tetris extends JFrame {
 				 * cause an instant game over when we unpause if we stay paused for more than a
 				 * minute or so.
 				 */
-				case KeyEvent.VK_P:
+				case KeyEvent.VK_SPACE:
 					if(!isGameOver && !isNewGame) {
 						isPaused = !isPaused;
 						logicTimer.setPaused(isPaused);
@@ -240,7 +244,7 @@ public class Tetris extends JFrame {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				
-				if(e.getKeyCode() == KeyEvent.VK_S) {
+				if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 				
 					/*
 					 * Drop - When released, we set the speed of the logic timer
@@ -251,7 +255,7 @@ public class Tetris extends JFrame {
 					logicTimer.reset();
 					//break;
 					
-				//default: //only 'S' matters, other keystrokes do nothing for this particular method
+					//default: //only 'S' matters, other keystrokes do nothing for this particular method
 				}
 				
 			}
@@ -312,9 +316,7 @@ public class Tetris extends JFrame {
 			 * move our current piece down.
 			 */
 			if(logicTimer.hasElapsedCycle()) {
-				updateGame();
-					
-				
+				updateGame();	
 			}
 		
 			//Decrement the drop cool down if necessary.
@@ -384,7 +386,7 @@ public class Tetris extends JFrame {
 			 * in from the heavens immediately after this piece hits if we've not reacted
 			 * yet. (~0.5 second buffer).
 			 */
-			dropCooldown = 0;
+			dropCooldown = 20;
 			
 			/*
 			 * Update the difficulty level. This has no effect on the game, and is only

@@ -137,12 +137,12 @@ public class SidePanel extends JPanel {
 		g.setFont(LARGE_FONT);
 		g.drawString("Controls", SMALL_INSET, offset = CONTROLS_INSET);
 		g.setFont(SMALL_FONT);
-		g.drawString("A - Move Left", LARGE_INSET, offset += TEXT_STRIDE);
-		g.drawString("D - Move Right", LARGE_INSET, offset += TEXT_STRIDE);
-		g.drawString("Q - Rotate Anticlockwise", LARGE_INSET, offset += TEXT_STRIDE);
-		g.drawString("E - Rotate Clockwise", LARGE_INSET, offset += TEXT_STRIDE);
-		g.drawString("S - Drop", LARGE_INSET, offset += TEXT_STRIDE);
-		g.drawString("P - Pause Game", LARGE_INSET, offset += TEXT_STRIDE);
+		g.drawString("Left Arrow - Move Left", LARGE_INSET, offset += TEXT_STRIDE);
+		g.drawString("Right Arrow - Move Right", LARGE_INSET, offset += TEXT_STRIDE);
+		g.drawString("Up Arrow - Rotate", LARGE_INSET, offset += TEXT_STRIDE);
+		//g.drawString("E - Rotate Clockwise", LARGE_INSET, offset += TEXT_STRIDE);
+		g.drawString("Down Arrow - Drop", LARGE_INSET, offset += TEXT_STRIDE);
+		g.drawString("Space Bar - Pause Game", LARGE_INSET, offset += TEXT_STRIDE);
 		
 		/*
 		 * Draw the next piece preview box.
