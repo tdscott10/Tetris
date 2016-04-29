@@ -31,6 +31,11 @@ public class BoardPanel extends JPanel {
 	public static final int COLOR_MIN = 35;
 	
 	/**
+	 * Current Level holder;
+	 */
+	private int currentLevel = 0;
+	
+	/**
 	 * Maximum color component values for tiles. This is required if we
 	 * want to show both light and dark shading on our tiles.
 	 */
@@ -314,6 +319,12 @@ public class BoardPanel extends JPanel {
 			g.setFont(SMALL_FONT);
 			msg = "Press Enter to Play" + (tetris.isNewGame() ? "" : " Again");
 			g.drawString(msg, CENTER_X - g.getFontMetrics().stringWidth(msg) / 2, 300);
+		} else if (tetris.getLevel() == currentLevel) {
+			g.setFont(LARGE_FONT);
+			g.setColor(Color.WHITE);
+			currentLevel++;
+			String msg = "Level " + currentLevel;
+			g.drawString(msg, CENTER_X - g.getFontMetrics().stringWidth(msg) / 2, CENTER_Y);
 		} else {
 			
 			/*
