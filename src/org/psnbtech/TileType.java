@@ -343,7 +343,8 @@ public enum TileType {
 	 * @param rotation The rotation.
 	 * @return The left inset.
 	 */
-	public int getLeftInset(int rotation) {
+	public int getLeftInset(int rotation) 
+	{
 		/*
 		 * Loop through from left to right until we find a tile then return
 		 * the column.
@@ -364,7 +365,8 @@ public enum TileType {
 	 * @param rotation The rotation.
 	 * @return The right inset.
 	 */
-	public int getRightInset(int rotation) {
+	public int getRightInset(int rotation)
+	{
 		/*
 		 * Loop through from right to left until we find a tile then return
 		 * the column.
@@ -385,7 +387,8 @@ public enum TileType {
 	 * @param rotation The rotation.
 	 * @return The top inset.
 	 */
-	public int getTopInset(int rotation) {
+	public int getTopInset(int rotation) 
+	{
 		/*
 		 * Loop through from top to bottom until we find a tile then return
 		 * the row.
@@ -406,7 +409,8 @@ public enum TileType {
 	 * @param rotation The rotation.
 	 * @return The bottom inset.
 	 */
-	public int getBottomInset(int rotation) {
+	public int getBottomInset(int rotation)
+	{
 		/*
 		 * Loop through from bottom to top until we find a tile then return
 		 * the row.
@@ -419,6 +423,5 @@ public enum TileType {
 			}
 		}
 		return -1;
-	}
-	
+	}	
 }
