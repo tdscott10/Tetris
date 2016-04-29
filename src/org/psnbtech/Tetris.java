@@ -242,14 +242,13 @@ public class Tetris extends JFrame {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				
-				switch(e.getKeyCode()) {
+				if(e.getKeyCode() == KeyEvent.VK_S) {
 				
-				/*
-				 * Drop - When released, we set the speed of the logic timer
-				 * back to whatever the current game speed is and clear out
-				 * any cycles that might still be elapsed.
-				 */
-				case KeyEvent.VK_S:
+					/*
+					 * Drop - When released, we set the speed of the logic timer
+					 * back to whatever the current game speed is and clear out
+					 * any cycles that might still be elapsed.
+					 */
 					logicTimer.setCyclesPerSecond(gameSpeed);
 					logicTimer.reset();
 					break;
